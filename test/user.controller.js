@@ -51,6 +51,17 @@ describe('User', () => {
         })
       done()
     })
+
+    it('only give username as input for user', (done) => {
+      const user = {
+        username: 'sergkudinov'
+      }
+      userController.create(user, (err, result) => {
+        expect(err).to.not.be.equal(null)
+        expect(result).to.be.equal(null)
+        done()
+      })
+    })
   })
 
   // TODO Create test for the get method
