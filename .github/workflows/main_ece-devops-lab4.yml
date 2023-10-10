@@ -13,22 +13,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    # Service containers to run with `runner-job`
-    services:
-      # Label used to access the service container
-      redis:
-        # Docker Hub image
-        image: redis
-        # Set health checks to wait until redis has started
-        options: >-
-          --health-cmd "redis-cli ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          # Maps port 6379 on service container to the host
-          - 6379:6379
-
     steps:
       - uses: actions/checkout@v2
 
@@ -68,5 +52,5 @@ jobs:
         with:
           app-name: 'ece-devops-lab4'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D4712EB9B69B4048A344A4729769070F }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_AF8949343D2E4D028839C40571C3389A }}
           package: .
