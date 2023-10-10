@@ -65,5 +65,5 @@ jobs:
         with:
           app-name: 'ece-devops-lab4'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_84b12d578fc246759f33851a9df98944 }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_9b5ffefa797342ed871c6489b44605cf }}
           package: .
