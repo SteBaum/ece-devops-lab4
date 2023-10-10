@@ -1,6 +1,8 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
+
 name: Build and deploy Node.js app to Azure Web App - ece-devops-lab4
+
 on:
   push:
     branches:
@@ -11,24 +13,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    # Service containers to run with `runner-job`
-    services:
-      # Label used to access the service container
-      redis:
-        # Docker Hub image
-        image: redis
-        # Set health checks to wait until redis has started
-        options: >-
-          --health-cmd "redis-cli ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          # Maps port 6379 on service container to the host
-          - 6379:6379
-
     steps:
       - uses: actions/checkout@v2
+
       - name: Set up Node.js version
         uses: actions/setup-node@v1
         with:
@@ -50,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'production'
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
@@ -64,6 +51,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'ece-devops-lab4'
-          slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_9b5ffefa797342ed871c6489b44605cf }}
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D4712EB9B69B4048A344A4729769070F }}
           package: .
